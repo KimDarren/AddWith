@@ -34,7 +34,7 @@ extension AddWith where Self: UIView {
   ///       self.titleLabel,
   ///       self.descriptionLabel,
   ///       self.imageView
-  ///     }
+  ///     )
   ///
   /// - Parameter subviews: The collection of views to be added. After being added, this views appear on top of any other subviews.
   
@@ -62,8 +62,8 @@ extension AddWith where Self: UIView {
   ///       self.contentContainer.with(
   ///         self.descriptionLabel
   ///         self.imageView
-  ///       }
-  ///     }
+  ///       )
+  ///     )
   ///
   /// - Parameter subviews: The collection of views to be added. After being added, this views appear on top of any other subviews.
   /// - Returns: Receiver, with new subviews.
@@ -71,6 +71,14 @@ extension AddWith where Self: UIView {
   public func with(_ subviews: UIView...) -> Self {
     self.add(subviews)
     return self
+  }
+  
+  public func with(_ subviews: [UIView]) -> Self {
+    return self.with(subviews)
+  }
+  
+  public func with(_ subviews: [UIView]...) -> Self {
+    return self.with(subviews.flatMap { $0 })
   }
   
 }
