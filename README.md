@@ -4,6 +4,7 @@
 [![CocoaPods](http://img.shields.io/cocoapods/v/AddWith.svg)](https://cocoapods.org/pods/AddWith)
 
 🔌 Add subviews with its' subviews.
+Expect subviews' hierarchy at a look.
 
 ## At a Glance
 
