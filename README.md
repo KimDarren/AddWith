@@ -1,4 +1,4 @@
-# AddWtih
+# AddWith
 
 ![Swift](https://img.shields.io/badge/Swift-3.0-orange.svg)
 [![CocoaPods](http://img.shields.io/cocoapods/v/AddWith.svg)](https://cocoapods.org/pods/AddWith)
