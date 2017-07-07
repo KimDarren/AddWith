@@ -74,7 +74,8 @@ extension AddWith where Self: UIView {
   }
   
   public func with(_ subviews: [UIView]) -> Self {
-    return self.with(subviews)
+    self.add(subviews)
+    return self
   }
   
   public func with(_ subviews: [UIView]...) -> Self {
