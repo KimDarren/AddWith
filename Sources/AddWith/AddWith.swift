@@ -22,18 +22,15 @@
 
 #if os(macOS)
 import AppKit
+public typealias View = NSView
 #elseif os(iOS) || os(tvOS) || os(watchOS)
 import UIKit
+public typealias View = UIView
 #endif
-
-
-public protocol Addable {
-  func addSubview(_ view: Self)
-}
 
 public protocol AddWith {}
 
-extension AddWith where Self: Addable {
+extension AddWith where Self: View {
 
   /// Add views to the end of the receiver’s list of subviews.
   /// This method establishes a strong reference to view and sets its next responder to the receiver, which is its new superview.
@@ -47,7 +44,7 @@ extension AddWith where Self: Addable {
   ///
   /// - Parameter subviews: The collection of views to be added. After being added, this views appear on top of any other subviews.
 
-  public func add(_ subviews: [Self]) {
+  public func add(_ subviews: [View]) {
     subviews.forEach {
       self.addSubview($0)
     }
@@ -60,7 +57,7 @@ extension AddWith where Self: Addable {
   ///
   /// - Parameter subviews: The collection of views to be added. After being added, this views appear on top of any other subviews.
 
-  public func add(_ subviews: Self...) {
+  public func add(_ subviews: View...) {
     self.add(subviews)
   }
 
@@ -77,26 +74,20 @@ extension AddWith where Self: Addable {
   /// - Parameter subviews: The collection of views to be added. After being added, this views appear on top of any other subviews.
   /// - Returns: Receiver, with new subviews.
 
-  public func with(_ subviews: Self...) -> Self {
+  public func with(_ subviews: View...) -> Self {
     self.add(subviews)
     return self
   }
 
-  public func with(_ subviews: [Self]) -> Self {
+  public func with(_ subviews: [View]) -> Self {
     self.add(subviews)
     return self
   }
 
-  public func with(_ subviews: [Self]...) -> Self {
+  public func with(_ subviews: [View]...) -> Self {
     return self.with(subviews.flatMap { $0 })
   }
 
 }
 
-#if os(macOS)
-extension NSView: Addable {}
-extension NSView: AddWith {}
-#elseif os(iOS) || os(tvOS) || os(watchOS)
-extension UIView: Addable {}
-extension UIView: AddWith {}
-#endif
+extension View: AddWith {}
